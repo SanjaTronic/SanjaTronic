@@ -1,0 +1,38 @@
+#include <Wire.h> // Biblioteca utilizada para fazer a comunicação com o I2C
+#include <LiquidCrystal_I2C.h> // Biblioteca utilizada para fazer a comunicação com o display 20x4 
+#include <HCSR04.h>
+
+#define p_trigger 12
+#define p_echo 13
+UltraSonicDistanceSensor distanceSensor(p_trigger , p_echo);
+float dist = distanceSensor.measureDistanceCm();
+
+
+#define col 16 // Serve para definir o numero de colunas do display utilizado
+#define lin  2 // Serve para definir o numero de linhas do display utilizado
+#define ende  0x27 // Serve para definir o endereço do display.
+
+LiquidCrystal_I2C lcd(ende,col,lin); // Chamada da funcação LiquidCrystal para ser usada com o I2C
+
+void setup() //Incia o display
+{  
+  lcd.init(); // Serve para iniciar a comunicação com o display já conectado
+  lcd.backlight(); // Serve para ligar a luz do display
+  lcd.clear(); // Serve para limpar a tela do display
+}
+void loop() 
+{
+  //while(dist >= 0){
+    if((dist >= 1) && (dist <= 6)){
+  lcd.setCursor(1,0); // Coloca o cursor do display na coluna 1 e linha 1
+  lcd.print("-"); // Comando de saída com a mensagem que deve aparecer na coluna 2 e linha 1.
+  delay(500);
+  }
+  if((dist > 6){// && (dist < 15)){
+    
+    lcd.setCursor(1,13);
+    lcd.print("|");
+    delay(500);
+  }
+
+  }

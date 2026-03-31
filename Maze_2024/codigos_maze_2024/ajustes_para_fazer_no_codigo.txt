@@ -1,0 +1,22 @@
+Leitura do Giroscópio:
+
+acelerometro.read() não é um método válido na biblioteca MMA8452Q. Verifique a documentação da biblioteca para usar a função correta de leitura do giroscópio e acelerômetro.
+Comparação com Byte pl:
+
+A comparação if(pl == "LANDSCAPE_L") é incorreta, pois pl é um byte e não uma string. Compare com um valor de byte apropriado ou ajuste o código para comparar corretamente.
+Uso de Pinos:
+
+O pino TRIGGER_PIN3 (22) e ECHO_PIN3 (24) estão sendo usados também para o sensor de cor. Isso pode causar conflito. Certifique-se de usar pinos distintos para os sensores.
+Funções de Movimentação:
+
+A lógica para virar pode não estar alinhada corretamente com a direção do robô. Verifique as ações dos motores para garantir que correspondam ao movimento desejado.
+Controle do LED:
+
+O LED pisca sem considerar a lógica principal do robô. Isso pode resultar em LEDs piscando mesmo quando não deveria.
+Tempos de Delay:
+
+Há muitos delays no loop principal e dentro de funções, o que pode atrasar o comportamento do robô e tornar a resposta lenta.
+Repetição do Código:
+
+O código para movimentação e leitura de cores é repetitivo e pode ser simplificado para melhorar a clareza e a manutenção.
+Corrigir essas questões e revisar a lógica deve ajudar a garantir que o robô funcione de acordo com o esperado.
