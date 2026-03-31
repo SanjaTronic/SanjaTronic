@@ -94,14 +94,14 @@ void loop() {
   tcaSelect(3);
   sensor3.rangingTest(&measure, false);
   Serial.print("S3: ");
-  Serial.print(measure.RangeMilliMeter / 10);
+  Serial.print(measure.RangeMilliMeter / 10 - 2);
   Serial.print(" cm\t ");
 
   //Sensor 4
   tcaSelect(4);
   sensor4.rangingTest(&measure, false);
   Serial.print("S4: ");
-  Serial.print(measure.RangeMilliMeter / 10);
+  Serial.print(measure.RangeMilliMeter / 10 - 3);
   Serial.print(" cm\t ");
 
   //Sensor 5
