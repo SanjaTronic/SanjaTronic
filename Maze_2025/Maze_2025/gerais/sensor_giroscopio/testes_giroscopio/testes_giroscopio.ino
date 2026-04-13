@@ -18,7 +18,7 @@ Canal |   binário  |Hexadecimal
 */
 
 // Inclusão de bibliotecas
-#include <Wire.h>     // Biblioteca para uso da comunicação I2C
+/*#include <Wire.h>     // Biblioteca para uso da comunicação I2C
 #include "mpu6050.h"  // Biblioteca para uso do sensor giroscópio mpu6050
 
 // Definição de pinos
@@ -77,3 +77,64 @@ void tca_select(uint8_t port) {
   Wire.endTransmission();  // Encerra a comunicação com o pca
 
 }
+*/
+#include <Wire.h>
+#include "mpu6050.h"
+
+// Endereço do multiplexador
+#define TCA1_END 0x70
+
+// Canal do giroscópio no multiplexador
+#define END_PORTA_GIROSCOPIO 0x02
+
+// ================= SETUP =================
+void setup() 
+{
+  Serial.begin(9600);
+  Wire.begin();
+
+  delay(100);
+
+  Serial.println("Inicializando MPU6050...");
+  iniciaGiroscopio();
+}
+
+// ================= LOOP =================
+void loop() 
+{
+  //seleciona_canal_multiplex(TCA1_END, END_PORTA_GIROSCOPIO);
+
+  mpu_loop(); // Atualiza os dados do sensor
+
+  float anguloZ = getAngleZ();
+
+  Serial.print("Angulo Z: ");
+  Serial.println(anguloZ);
+
+  delay(100);
+}
+
+// ================= FUNÇÕES =================
+
+// Seleciona canal do multiplexador
+void seleciona_canal_multiplex(uint8_t endereco_multiplex, uint8_t canal) 
+{
+  Wire.beginTransmission(endereco_multiplex);
+  Wire.write(canal);
+  Wire.endTransmission();
+}
+
+// Inicializa o MPU6050
+void iniciaGiroscopio() 
+{
+  Serial.println("Selecionando canal do MPU...");
+  seleciona_canal_multiplex(TCA1_END, END_PORTA_GIROSCOPIO);
+
+  mpu_begin();       // inicia MPU
+  mpu_calibrate(200); // calibra
+  mpu_reset();        // zera ângulo
+
+  Serial.println("MPU6050 pronto!");
+}
+
+

@@ -102,7 +102,7 @@ int distUltrasonicoInicial;  // Distância inicial do sensor ultrasonico
 bool inicioMov = false;      // Verifica se o robô começou a andar
 
 // Sessão do modo serial
-#define modoSerial false // Ligar  ou desligar o modo serial para habilitar os diganósticos durante o código
+#define modoSerial true // Ligar  ou desligar o modo serial para habilitar os diganósticos durante o código
 
 #if modoSerial
   #define s_begin(x)  Serial.begin(x)
