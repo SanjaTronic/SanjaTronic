@@ -129,7 +129,7 @@ void iniciaGiroscopio()
 {
   Serial.println("Selecionando canal do MPU...");
   seleciona_canal_multiplex(TCA1_END, END_PORTA_GIROSCOPIO);
-
+  
   mpu_begin();       // inicia MPU
   mpu_calibrate(200); // calibra
   mpu_reset();        // zera ângulo
