@@ -2,6 +2,7 @@
 #define GIROSCOPIO_H
 
 #include "MultiplexI2C.h"
+#include <Arduino.h>
 
 class Giroscopio
 {
